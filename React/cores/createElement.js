@@ -1,4 +1,4 @@
-function createElement (type, props, ...children) {
+export const createElement =(type, props, ...children)=> {
     return {
         type,
         props: {
@@ -11,7 +11,7 @@ function createElement (type, props, ...children) {
         }
     }
 }
-function createTextElement (text) {
+export const createTextElement= (text)=> {
     return {
         type: "TEXT_ELEMENT",
         props: {
@@ -21,7 +21,3 @@ function createTextElement (text) {
     }
 }
 
-module.exports = {
-    createElement,
-    createTextElement
-};
