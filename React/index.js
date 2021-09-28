@@ -1,6 +1,7 @@
-import {createElement,createTextElement} from './cores/createElement.js'
+import createElement from './cores/createElement.js'
+import render from './cores/render.js'
 const JReact ={
     createElement,
-    createTextElement
+    render
 }
 export default JReact
