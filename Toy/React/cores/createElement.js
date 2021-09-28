@@ -4,6 +4,7 @@
         props: {
             ...props,
             children: children.map(child => 
+                 // 这里我们区分下基本类型和引用类型，用 createTextElement 来创建文本节点类型
                 typeof child === 'object'
                 ? child
                 : createTextElement(child)
