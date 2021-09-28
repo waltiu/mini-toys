@@ -1,8 +1,14 @@
+import React from '../Toy/React'
 import './style.css'
 
 const app = document.querySelector<HTMLDivElement>('#app')!
+/** @jsx React.createElement */
+const element = (
+  <div id="foo">
+    <a>bar</a>
+    <b />
+  </div>
+);
 
-app.innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`
+console.log('virtualDom',element)
+React.render(element,app);
