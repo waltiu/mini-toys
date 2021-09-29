@@ -7,8 +7,6 @@ const app = document.querySelector<HTMLDivElement>('#root')
 /** @jsx React.createElement */
 const element = (
   <div id="foo">
-    <a>bar</a>
-    <b />
     <Home/>
   </div>
 );
