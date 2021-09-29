@@ -1,5 +1,5 @@
 
-import React from '../../../Toy/React'
+import React from '@React'
 
 // /** @jsxRuntime classic */
 /** @jsx React.createElement */

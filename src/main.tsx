@@ -1,4 +1,4 @@
-import React from '../Toy/React'
+import React from '@React'
 import Home from './pages/Home'
 
 const app = document.querySelector<HTMLDivElement>('#root')
@@ -12,5 +12,5 @@ const element = (
     <Home/>
   </div>
 );
-console.log(element)
+console.log(React,'JReact',element)
 React.render(element,app);
