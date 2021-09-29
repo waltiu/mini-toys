@@ -1,6 +1,11 @@
- const createElement =(type, props, ...children)=> {
+ const createElement =(type:any, props:any, ...children:any)=> {
+     if(typeof(type)!=='string'){
+         const Component=type()
+         return Component
+     }
     return {
-        type,
+        type:typeof(type)==='string'?type:'div',
+        flag:'JReact',
         props: {
             ...props,
             children: children.map(child => 
@@ -12,9 +17,10 @@
         }
     }
 }
- const createTextElement= (text)=> {
+ const createTextElement= (text:any)=> {
     return {
         type: "TEXT_ELEMENT",
+        flag:'JReact',
         props: {
             nodeValue: text,
             children: []
