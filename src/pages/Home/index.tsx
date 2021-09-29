@@ -1,7 +1,8 @@
 
 import React from '@React'
 
-// /** @jsxRuntime classic */
+
+/** @jsxRuntime classic */
 /** @jsx React.createElement */
 const Home =()=>{
     return (
