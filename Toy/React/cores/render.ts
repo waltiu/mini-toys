@@ -16,7 +16,7 @@ function render(element, container) {
   
     // 3. 遍历children，递归调用 render
     element.props.children.forEach((child) => render(child, dom));
-  
+    console.log(dom,'dom',container)
     // 4. 将 DOM 节点添加至 root 根节点
     container.appendChild(dom);
   }
