@@ -15,7 +15,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-
+    "paths": {
+      "@React": ["./@Toy/React"]
+    } 
   },
   "include": ["./src"],
 }
