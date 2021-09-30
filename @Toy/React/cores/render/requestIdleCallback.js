@@ -1,6 +1,6 @@
+
 import createDom from './createDom'
 //  requestIdleCallback只有部分浏览器支持，React内部自己实现了一个requestIdleCallback()
-
 
 // 如果有子或者兄弟节点没有插入,则return出去,赋值到nextUnitOfWork,再次执行
 const performUnitOfWork =(fiber)=>{
@@ -16,8 +16,10 @@ const performUnitOfWork =(fiber)=>{
   const elements=fiber.props.children // 旧的vDOM结构
   let index=0
   let prevSibing=null
+  console.log(elements,'emeltnts')
   while(index<elements.length){
     const element=elements[index]
+    // fiber节点结构,每个元素都是一个fiber
     const newFiber={
       flag:'JReact',
       type:element.type,
@@ -29,13 +31,11 @@ const performUnitOfWork =(fiber)=>{
     if(index===0){
       fiber.child=newFiber
     }else{
-      prevSibing.sibling=newFiber
+      prevSibing.sibling=newFiber 
     }
-    prevSibing=newFiber
+    prevSibing=newFiber // 下一个元素为上一个元素的sibling
     index++
   }
-  console.log("2. 每次执行工作单元后的Fiber树", fiber);
-
 
   /*第三步： 遍历fiber树，找到下一个工作单元 */
   if (fiber.child) {

@@ -1,4 +1,3 @@
-import { TEXT_ELEMENT_TYPE, isProperty } from '../../../Common/constant'
 import performUnitOfWork from './requestIdleCallback'
 let nextUnitOfWork =null  // 初始任务
 
