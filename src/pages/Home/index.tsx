@@ -4,7 +4,8 @@ import React from '@React'
 
 /** @jsxRuntime classic */
 /** @jsx React.createElement */
-const Home =()=>{
+const Home =(props:any)=>{
+    console.log(props)
     return (
         <div>
             欢迎使用JReact

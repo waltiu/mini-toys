@@ -1,7 +1,7 @@
  const createElement =(type:any, props:any, ...children:any)=> {
+    // 函数式组件需要特殊处理,type 就是函数组件本身,props 就是函数组件的参数
      if(typeof(type)!=='string'){
-         const Component=type()
-         return Component
+         return type(props)
      }
     return {
         type:typeof(type)==='string'?type:'div',
