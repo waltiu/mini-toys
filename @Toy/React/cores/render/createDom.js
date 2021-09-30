@@ -1,4 +1,5 @@
 import {TEXT_ELEMENT_TYPE,isProperty } from '../../../Common/constant'
+import {updateDom} from './commitWork'
 // 只创建dom
 const createDom=(fiber)=>{
     const dom=fiber.type == TEXT_ELEMENT_TYPE
@@ -9,6 +10,7 @@ const createDom=(fiber)=>{
     .forEach((name) => {
       dom[name] = fiber.props[name];
     });
+    updateDom(dom,{},fiber.props)
     return dom;
   }
 
