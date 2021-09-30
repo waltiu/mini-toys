@@ -5,6 +5,7 @@ let nextUnitOfWork =null  // 初始任务
 let wipRoot=null  // 保存一个filber树wipRoot(work in progress root),在render中初始化,commit替换整个树
 
 const commitRoot=()=>{
+  console.log('fiber成产结束******************',wipRoot)
   commitWork(wipRoot.child);
   wipRoot = null;
 }

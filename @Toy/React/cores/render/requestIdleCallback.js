@@ -17,7 +17,6 @@ const performUnitOfWork =(fiber)=>{
   const elements=fiber.props.children // 旧的vDOM结构
   let index=0
   let prevSibing=null
-  console.log(elements,'emeltnts')
   while(index<elements.length){
     const element=elements[index]
     // fiber节点结构,每个元素都是一个fiber
