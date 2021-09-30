@@ -4,7 +4,7 @@ import { EFFECT_TAG_PLACEMENT, EFFECT_TAG_DELETION, EFFECT_TAG_UPDATE } from '..
 //  requestIdleCallback只有部分浏览器支持，React内部自己实现了一个requestIdleCallback()
 
 
-// 创建每个Fiber,并比较是否更新
+// 创建每个Fiber,并比较是否更新,初始化时会为每个节点设置effectTag为EFFECT_TAG_UPDATE新增
 const createFiber = (fiber, elements, deletions) => {
   // 旧的fiber可以在fiber的alternate属性中知道,在index.js的render中定义的
   let oldFiber = fiber?.alternate?.child
@@ -15,7 +15,6 @@ const createFiber = (fiber, elements, deletions) => {
     let newFiber = null
     const sameType = oldFiber && element && element.type === oldFiber.type // 新老fiber的类型是否相同
     // fiber节点结构,每个元素都是一个fiber
-
     // 如果type相同,保留dom并设置effectTag为UPDATE
     if (sameType) {
       newFiber = {
@@ -28,7 +27,7 @@ const createFiber = (fiber, elements, deletions) => {
       }
     }
 
-    // 如果type不同,dom为空后面创建新的dom节点并设置effectTag为PLACEMENT
+    // 如果type不同,dom为空后面创建新的dom节点并设置effectTag为PLACEMENT新增
     if (element && !sameType) {
       newFiber = {
         type: element.type,
@@ -40,7 +39,7 @@ const createFiber = (fiber, elements, deletions) => {
       }
     }
 
-    // 如果type不同,创建新的dom同时,将旧的dom放入deletions
+    // 如果type不同,创建新的dom同时,将旧的dom放入deletions在全部流程结束后删除
     if (oldFiber && !sameType) {
       oldFiber.effectTag = EFFECT_TAG_DELETION
       deletions.push(oldFiber)

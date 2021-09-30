@@ -8,7 +8,7 @@ let deletions = null // 删除的节点
 
 const commitRoot = () => {
   deletions.forEach(commitWork)
-  console.log('fiber成产结束******************', wipRoot)
+  console.log('fiberTree成产结束******************', wipRoot)
   commitWork(wipRoot.child);
   currentRoot = wipRoot
   wipRoot = null;
@@ -24,7 +24,7 @@ const render = (element, container) => {
   };
   deletions = []
   nextUnitOfWork = wipRoot;
-  console.log('fiber初始化******************', nextUnitOfWork)
+  console.log('fiberTree初始化********************', nextUnitOfWork)
   requestIdleCallback(workLoop)
 }
 
