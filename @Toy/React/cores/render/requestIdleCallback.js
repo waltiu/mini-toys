@@ -8,10 +8,11 @@ const performUnitOfWork =(fiber)=>{
   if(!fiber.dom){
     fiber.dom=createDom(fiber)  // 生成新的vDOM结构
   }
-
-  if(fiber.parent){
-    fiber.parent.dom.appendChild(fiber.dom)  // 插入到dom中
-  }
+  // 为了避免浏览器中断我们的操作,给用户呈现一个不完整的ui,当所有单元执行完成后,再进行Dom添加操作
+  // 也就是React在不同阶段的机制不同 Rneder阶段,可以中断,Commit阶段,不可中断
+  // if(fiber.parent){
+  //   fiber.parent.dom.appendChild(fiber.dom)  // 插入到dom中
+  // }
   /*第二步：子元素生成Fiber*/
   const elements=fiber.props.children // 旧的vDOM结构
   let index=0
