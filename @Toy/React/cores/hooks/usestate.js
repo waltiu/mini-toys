@@ -1,4 +1,5 @@
-const useStateHook=(initial,wipFiber)=>{
+function useStateHook(initial,wipFiber){
+    console.log(2222)
     const oldHook=wipFiber?.alternate?.oldHook
     const hook={
         state:oldHook?oldHook.state:initial,

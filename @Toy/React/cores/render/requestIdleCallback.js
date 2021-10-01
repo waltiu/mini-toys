@@ -63,6 +63,7 @@ const createFiber = (fiber, elements, deletions) => {
 let wipFiber=null
 // 如果有子或者兄弟节点没有插入,则return出去,赋值到nextUnitOfWork,再次执行
 const performUnitOfWork = (fiber, deletions) => {
+  console.log(1111)
   /*第一步：生成dom */
   if (!fiber.dom) {
     fiber.dom = createDom(fiber)  // 生成新的vDOM结构
