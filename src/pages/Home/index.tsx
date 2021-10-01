@@ -1,9 +1,10 @@
 
-import React from '@React'
-
 
 /** @jsxRuntime classic */
 /** @jsx React.createElement */
+import React from '@React'
+import Login  from '../Login'
+
 const Home =(props:any)=>{
     console.log(props)
     return (
@@ -13,7 +14,7 @@ const Home =(props:any)=>{
                 1
             </div>
             <div>
-                2
+               <Login/>
             </div>
         </div>
     )

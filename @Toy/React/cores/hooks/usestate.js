@@ -1,4 +1,4 @@
-const useStateHook=(initial,wipFiber,nextUnitOfWork,deletions)=>{
+const useStateHook=(initial,wipFiber)=>{
     const oldHook=wipFiber?.alternate?.oldHook
     const hook={
         state:oldHook?oldHook.state:initial,
@@ -12,19 +12,22 @@ const useStateHook=(initial,wipFiber,nextUnitOfWork,deletions)=>{
 
     // 设置钩子状态
     const setState=action=>{
+        console.log(action,'actions')
         // 将动作添加至钩子队列
         hook.queue.push(action)
         // 更新渲染
-        wipRoot={
-            dom: currentRoot.dom,
-            props: currentRoot.props,
-            alternate: currentRoot,
+        window.JReact.nextUnitOfWork ={
+            dom: window.JReact.currentRoot.dom,
+            props: window.JReact.currentRoot.props,
+            alternate: window.JReact.currentRoot,
         }
-        nextUnitOfWork =wipRoot
-        deletions=[]
+        window.JReact.deletions=[]
     }
       // 把钩子添加至工作单元
-      wipFiber.hook = hook
+      console.log(wipFiber,'wipFiber')
+      if(wipFiber){
+       wipFiber.hook = hook
+      }
 
       // 返回钩子的状态和设置钩子的函数
       return [hook.state, setState]

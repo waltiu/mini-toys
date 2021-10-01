@@ -1,6 +1,7 @@
 
 import createDom from './createDom'
 import { EFFECT_TAG_PLACEMENT, EFFECT_TAG_DELETION, EFFECT_TAG_UPDATE } from '../constant'
+import useStateHook from '../hooks/usestate'
 //  requestIdleCallback只有部分浏览器支持，React内部自己实现了一个requestIdleCallback()
 
 
@@ -59,13 +60,15 @@ const createFiber = (fiber, elements, deletions) => {
     index++
   }
 }
-
+let wipFiber=null
 // 如果有子或者兄弟节点没有插入,则return出去,赋值到nextUnitOfWork,再次执行
 const performUnitOfWork = (fiber, deletions) => {
   /*第一步：生成dom */
   if (!fiber.dom) {
     fiber.dom = createDom(fiber)  // 生成新的vDOM结构
   }
+  wipFiber=fiber
+  wipFiber.hook =[]
   /*第二步：子元素生成Fiber*/
   const elements = fiber.props.children // 旧的vDOM结构
   createFiber(fiber, elements, deletions)
@@ -79,5 +82,8 @@ const performUnitOfWork = (fiber, deletions) => {
     }
     fiber = fiber.parent
   }
+}
+export const useState =(initial)=>{
+  useStateHook(initial,wipFiber)
 }
 export default performUnitOfWork
