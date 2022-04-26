@@ -1,6 +1,7 @@
 {
   "name": "mini-toys",
   "version": "0.0.0",
+  "main": "lib/index.js",
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
