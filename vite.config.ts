@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [react()],
   resolve:{
     alias:{
-      '@React': path.resolve(__dirname, '@Toy/React'),
+      '@': path.resolve(__dirname, 'lib/'),
     }
   }
 })
