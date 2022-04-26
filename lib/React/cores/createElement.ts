@@ -1,4 +1,4 @@
-function createElement (type, props, ...children) {
+ function createElement (type, props, ...children) {
     return {
         type,
         props: {
@@ -283,25 +283,4 @@ function reconcileChildren (wipFiber, elements) {
     }
 }
 
-const myReact = {
-    createElement,
-    render,
-    useState
-}
-
-/** @jsx myReact.createElement */
-const container = document.getElementById("container")
-
-function Counter() {
-    const [count, setCount] = myReact.useState(1)
-    return (
-        <div>
-            <h1 onClick={() => setCount(count => count + 1)}>
-                Count: {count}
-            </h1>
-        </div>
-    )
-}
-const element = <Counter />
-
-myReact.render(element, container)
+export default createElement

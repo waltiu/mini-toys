@@ -1,4 +1,5 @@
-
+import toys from 'mini-toys'
+console.log(111,toys)
 /** @jsxRuntime classic */
 /** @jsx myReact.createElement */
 function createElement (type, props, ...children) {

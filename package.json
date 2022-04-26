@@ -1,11 +1,21 @@
 {
   "name": "mini-toys",
-  "version": "0.0.0",
-  "main": "lib/index.js",
+  "version": "0.0.4",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/toys.umd.js",
+  "module": "./dist/toys.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/toys.es.js",
+      "require": "./dist/toys.umd.js"
+    }
+  },
   "scripts": {
     "start": "vite",
-    "build": "tsc && vite build",
-    "serve": "vite preview"
+    "build": " vite build",
+    "push": "npm run build && npm publish"
   },
   "devDependencies": {
     "@types/node": "^16.10.1",
@@ -16,6 +26,7 @@
     "vite": "^2.5.4"
   },
   "dependencies": {
+    "mini-toys": "^0.0.4",
     "react": "^17.0.2"
   }
 }
