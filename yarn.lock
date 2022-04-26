@@ -591,6 +591,14 @@ mini-toys@^0.0.4:
     mini-toys "^0.0.3"
     react "^17.0.2"
 
+mini-toys@^0.0.41:
+  version "0.0.41"
+  resolved "https://registry.yarnpkg.com/mini-toys/-/mini-toys-0.0.41.tgz#0c9628ef435c0e47caccd1abc7fe369cc785d6d6"
+  integrity sha512-f0UbLWDLgGs4Y08xRt1QRT+LtlVckuN1nT8Zviucbs9CVSutatHuTXoXiX3YIEuNcEspTQGu5BLAIrF1kkfoKg==
+  dependencies:
+    mini-toys "^0.0.4"
+    react "^17.0.2"
+
 ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"

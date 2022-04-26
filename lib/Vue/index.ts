@@ -1,1 +1,2 @@
-export const Todo='vue'
+ const Todo='vue'
+ export default Todo
