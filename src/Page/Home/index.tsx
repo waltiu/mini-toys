@@ -2,10 +2,10 @@
 /** @jsx React.createElement */
 import {React} from 'mini-toys'
 
-const Home=()=>{
+const Home=({name}:{name:string})=>{
     return (
         <div>
-            11
+            {name}
         </div>
     )
 }
