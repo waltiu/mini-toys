@@ -1,4 +1,4 @@
-import { React } from "@";
+import  React  from "../packages/React";
 import Home from "./Page/Home";
 const container = document.getElementById("root");
 
