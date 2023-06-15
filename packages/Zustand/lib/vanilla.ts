@@ -1,11 +1,5 @@
-// js 状态管理库
 
-type SetStateInternal<T> = {
-  _(
-    partial: T | Partial<T> | {_(state: T): T | Partial<T> | void}["_"],
-    replace?: boolean | undefined
-  ): void;
-}["_"];
+type SetStateInternal<T> = (partial: T | Partial<T> | ((state: T) => void | T | Partial<T>), replace?: boolean | undefined) => void
 export interface StoreApi<T> {
   getState: () => T;
   setState: SetStateInternal<T>;
