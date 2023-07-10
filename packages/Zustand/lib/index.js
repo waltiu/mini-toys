@@ -9,7 +9,7 @@ export const init = (type) => {
   }
 };
 
-const create = (fn) => {
+export const create = (fn) => {
   const api = createStore(fn);
   const useBoundStore = (selector, equalityFn) =>
     useStoreMethod(api, selector || api.getState, equalityFn);
