@@ -846,7 +846,7 @@ yocto-queue@^0.1.0:
   resolved "http://registry.m.jd.com/yocto-queue/download/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha1-ApTrPe4FAo0x7hpfosVWpqrxChs=
 
-zustand@^4.3.9:
+zustand@^4.3.8:
   version "4.3.9"
   resolved "http://registry.m.jd.com/zustand/download/zustand-4.3.9.tgz#a7d4332bbd75dfd25c6848180b3df1407217f2ad"
   integrity sha1-p9QzK71139JcaEgYCz3xQHIX8q0=

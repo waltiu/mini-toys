@@ -3,14 +3,14 @@ import Child from "./child";
 
 export const Test = () => {
   const globalStore = useGlobalStore((state) => state);
-  const { bears, count, increase, addBees, radomCount } = globalStore;
+  const { bears, count, increase, reduce, radomCount } = globalStore;
   return (
     <div>
       <h3>Parent</h3>
       <div>
         bears ( {bears} ):
         <button onClick={() => increase()}>增加 </button>
-        <button onClick={() => addBees()}>减少</button>
+        <button onClick={() => reduce()}>减少</button>
       </div>
 
       <div>
