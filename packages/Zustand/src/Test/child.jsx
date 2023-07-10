@@ -1,18 +1,19 @@
 import useGlobalStore from "../Store/useGlobalStore";
 
 const Child = () => {
-  const bears = useGlobalStore(
-    (state) => state?.bears,
-    (a, b) => {
-      return a === b;
-    }
+  const [reset, destroy] = useGlobalStore(
+    (state) => [state?.reset, state.destroy]
   );
-
 
   return (
     <div>
       <h3>Child</h3>
-      <p>{bears}</p>
+      <p>
+        <button onClick={() => reset()}>重置</button>
+      </p>
+      <p>
+        <button onClick={() => destroy()}>销毁</button>
+      </p>
     </div>
   );
 };

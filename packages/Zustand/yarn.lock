@@ -803,6 +803,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+use-sync-external-store@1.2.0:
+  version "1.2.0"
+  resolved "http://registry.m.jd.com/use-sync-external-store/download/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
+  integrity sha1-fb79bvP+TnZ6DPXXKHqs+1hGkoo=
+
 vue-demi@>=0.14.5:
   version "0.14.5"
   resolved "http://registry.m.jd.com/vue-demi/download/vue-demi-0.14.5.tgz#676d0463d1a1266d5ab5cba932e043d8f5f2fbd9"
@@ -840,3 +845,10 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "http://registry.m.jd.com/yocto-queue/download/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha1-ApTrPe4FAo0x7hpfosVWpqrxChs=
+
+zustand@^4.3.9:
+  version "4.3.9"
+  resolved "http://registry.m.jd.com/zustand/download/zustand-4.3.9.tgz#a7d4332bbd75dfd25c6848180b3df1407217f2ad"
+  integrity sha1-p9QzK71139JcaEgYCz3xQHIX8q0=
+  dependencies:
+    use-sync-external-store "1.2.0"

@@ -1,17 +1,19 @@
 import create from "../../lib";
-
-
 const useGlobalStore = create((set) => ({
   bears: 0,
   count: 100,
-  increase: (by = 1) => set((state) => ({ bears: state.bears + by })),
-  decrease: (by = 1) =>
+  increase: (by = 1) => set((state) => ({ bears: (state.bears || 0) + by })),
+  addBees: (by) =>
     set((state) => {
-      state.bears -= by;
+      state.bees += by;
     }),
-  reset: () => set({ bears: 0 }),
-
-  increaseCount: () => set((state) => ({ count: state.count + 1 })),
+  reset: () =>
+    set({
+      count: 0,
+      bears: 0,
+    }),
+  destroy: () => set({}, true),
+  radomCount: () => set(() => ({ count: Math.random() })),
 }));
 
 export default useGlobalStore;

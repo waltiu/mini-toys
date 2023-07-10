@@ -4,11 +4,9 @@ import createStore from "./vanilla";
 export const useStore = (api, selector, equalityFn) => {
   const { subscribe, getState } = api;
   const state = getState();
-  console.log(state,'state')
-  console.log(selector,'selector')
-
   const value = useRef(useMemo(() => selector(state), []));
   const [, forceUpdate] = useReducer((s) => s + 1, 0);
+  
   const listener = (newState) => {
     const newValue = selector(newState);
     if (equalityFn !== undefined) {
