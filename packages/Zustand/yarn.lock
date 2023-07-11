@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-"@babel/parser@^7.20.15", "@babel/parser@^7.21.3":
-  version "7.22.7"
-  resolved "http://registry.m.jd.com/@babel/parser/download/@babel/parser-7.22.7.tgz#df8cf085ce92ddbdbf668a7f186ce848c9036cae"
-  integrity sha1-34zwhc6S3b2/Zop/GGzoSMkDbK4=
-
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
   resolved "http://registry.m.jd.com/@eslint-community/eslint-utils/download/@eslint-community/eslint-utils-4.4.0.tgz#a23514e8fb9af1269d5f7788aa556798d61c6b59"
@@ -58,11 +53,6 @@
   resolved "http://registry.m.jd.com/@humanwhocodes/object-schema/download/@humanwhocodes/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha1-tSBSnsIdjllFoYUd/Rwy6U45/0U=
 
-"@jridgewell/sourcemap-codec@^1.4.15":
-  version "1.4.15"
-  resolved "http://registry.m.jd.com/@jridgewell/sourcemap-codec/download/@jridgewell/sourcemap-codec-1.4.15.tgz#d7c6e6755c78567a951e04ab52ef0fd26de59f32"
-  integrity sha1-18bmdVx4VnqVHgSrUu8P0m3lnzI=
-
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "http://registry.m.jd.com/@nodelib/fs.scandir/download/@nodelib/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -84,122 +74,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@types/web-bluetooth@^0.0.17":
-  version "0.0.17"
-  resolved "http://registry.m.jd.com/@types/web-bluetooth/download/@types/web-bluetooth-0.0.17.tgz#5c9f3c617f64a9735d7b72a7cc671e166d900c40"
-  integrity sha1-XJ88YX9kqXNde3KnzGceFm2QDEA=
-
-"@vue/compiler-core@3.3.4":
-  version "3.3.4"
-  resolved "http://registry.m.jd.com/@vue/compiler-core/download/@vue/compiler-core-3.3.4.tgz#7fbf591c1c19e1acd28ffd284526e98b4f581128"
-  integrity sha1-f79ZHBwZ4azSj/0oRSbpi09YESg=
-  dependencies:
-    "@babel/parser" "^7.21.3"
-    "@vue/shared" "3.3.4"
-    estree-walker "^2.0.2"
-    source-map-js "^1.0.2"
-
-"@vue/compiler-dom@3.3.4":
-  version "3.3.4"
-  resolved "http://registry.m.jd.com/@vue/compiler-dom/download/@vue/compiler-dom-3.3.4.tgz#f56e09b5f4d7dc350f981784de9713d823341151"
-  integrity sha1-9W4JtfTX3DUPmBeE3pcT2CM0EVE=
-  dependencies:
-    "@vue/compiler-core" "3.3.4"
-    "@vue/shared" "3.3.4"
-
-"@vue/compiler-sfc@3.3.4":
-  version "3.3.4"
-  resolved "http://registry.m.jd.com/@vue/compiler-sfc/download/@vue/compiler-sfc-3.3.4.tgz#b19d942c71938893535b46226d602720593001df"
-  integrity sha1-sZ2ULHGTiJNTW0YibWAnIFkwAd8=
-  dependencies:
-    "@babel/parser" "^7.20.15"
-    "@vue/compiler-core" "3.3.4"
-    "@vue/compiler-dom" "3.3.4"
-    "@vue/compiler-ssr" "3.3.4"
-    "@vue/reactivity-transform" "3.3.4"
-    "@vue/shared" "3.3.4"
-    estree-walker "^2.0.2"
-    magic-string "^0.30.0"
-    postcss "^8.1.10"
-    source-map-js "^1.0.2"
-
-"@vue/compiler-ssr@3.3.4":
-  version "3.3.4"
-  resolved "http://registry.m.jd.com/@vue/compiler-ssr/download/@vue/compiler-ssr-3.3.4.tgz#9d1379abffa4f2b0cd844174ceec4a9721138777"
-  integrity sha1-nRN5q/+k8rDNhEF0zuxKlyETh3c=
-  dependencies:
-    "@vue/compiler-dom" "3.3.4"
-    "@vue/shared" "3.3.4"
-
-"@vue/reactivity-transform@3.3.4":
-  version "3.3.4"
-  resolved "http://registry.m.jd.com/@vue/reactivity-transform/download/@vue/reactivity-transform-3.3.4.tgz#52908476e34d6a65c6c21cd2722d41ed8ae51929"
-  integrity sha1-UpCEduNNamXGwhzSci1B7YrlGSk=
-  dependencies:
-    "@babel/parser" "^7.20.15"
-    "@vue/compiler-core" "3.3.4"
-    "@vue/shared" "3.3.4"
-    estree-walker "^2.0.2"
-    magic-string "^0.30.0"
-
-"@vue/reactivity@3.3.4":
-  version "3.3.4"
-  resolved "http://registry.m.jd.com/@vue/reactivity/download/@vue/reactivity-3.3.4.tgz#a27a29c6cd17faba5a0e99fbb86ee951653e2253"
-  integrity sha1-onopxs0X+rpaDpn7uG7pUWU+IlM=
-  dependencies:
-    "@vue/shared" "3.3.4"
-
-"@vue/runtime-core@3.3.4":
-  version "3.3.4"
-  resolved "http://registry.m.jd.com/@vue/runtime-core/download/@vue/runtime-core-3.3.4.tgz#4bb33872bbb583721b340f3088888394195967d1"
-  integrity sha1-S7M4cru1g3IbNA8wiIiDlBlZZ9E=
-  dependencies:
-    "@vue/reactivity" "3.3.4"
-    "@vue/shared" "3.3.4"
-
-"@vue/runtime-dom@3.3.4":
-  version "3.3.4"
-  resolved "http://registry.m.jd.com/@vue/runtime-dom/download/@vue/runtime-dom-3.3.4.tgz#992f2579d0ed6ce961f47bbe9bfe4b6791251566"
-  integrity sha1-mS8ledDtbOlh9Hu+m/5LZ5ElFWY=
-  dependencies:
-    "@vue/runtime-core" "3.3.4"
-    "@vue/shared" "3.3.4"
-    csstype "^3.1.1"
-
-"@vue/server-renderer@3.3.4":
-  version "3.3.4"
-  resolved "http://registry.m.jd.com/@vue/server-renderer/download/@vue/server-renderer-3.3.4.tgz#ea46594b795d1536f29bc592dd0f6655f7ea4c4c"
-  integrity sha1-6kZZS3ldFTbym8WS3Q9mVffqTEw=
-  dependencies:
-    "@vue/compiler-ssr" "3.3.4"
-    "@vue/shared" "3.3.4"
-
-"@vue/shared@3.3.4":
-  version "3.3.4"
-  resolved "http://registry.m.jd.com/@vue/shared/download/@vue/shared-3.3.4.tgz#06e83c5027f464eef861c329be81454bc8b70780"
-  integrity sha1-Bug8UCf0ZO74YcMpvoFFS8i3B4A=
-
-"@vueuse/core@^10.2.1":
-  version "10.2.1"
-  resolved "http://registry.m.jd.com/@vueuse/core/download/@vueuse/core-10.2.1.tgz#a62b54cdaf1496138a9f8a7df7f9d644892b421f"
-  integrity sha1-pitUza8UlhOKn4p99/nWRIkrQh8=
-  dependencies:
-    "@types/web-bluetooth" "^0.0.17"
-    "@vueuse/metadata" "10.2.1"
-    "@vueuse/shared" "10.2.1"
-    vue-demi ">=0.14.5"
-
-"@vueuse/metadata@10.2.1":
-  version "10.2.1"
-  resolved "http://registry.m.jd.com/@vueuse/metadata/download/@vueuse/metadata-10.2.1.tgz#0865066def62ed97629c417ec79678d508d22934"
-  integrity sha1-CGUGbe9i7ZdinEF+x5Z41QjSKTQ=
-
-"@vueuse/shared@10.2.1":
-  version "10.2.1"
-  resolved "http://registry.m.jd.com/@vueuse/shared/download/@vueuse/shared-10.2.1.tgz#0fd0a5dd014b7713b7fe03347b30fad69bb15b30"
-  integrity sha1-D9Cl3QFLdxO3/gM0ezD61puxWzA=
-  dependencies:
-    vue-demi ">=0.14.5"
+"@types/node@^20.4.1":
+  version "20.4.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.4.1.tgz#a6033a8718653c50ac4962977e14d0f984d9527d"
+  integrity sha512-JIzsAvJeA/5iY6Y/OxZbv1lUcc8dNSE77lb2gnBH+/PJ3lFR1Ccvgwl5JWnHAkNHcRsT0TbpVOsiMKZ1F/yyJg==
 
 acorn-jsx@^5.3.2:
   version "5.3.2"
@@ -289,11 +167,6 @@ cross-spawn@^7.0.2:
     path-key "^3.1.0"
     shebang-command "^2.0.0"
     which "^2.0.1"
-
-csstype@^3.1.1:
-  version "3.1.2"
-  resolved "http://registry.m.jd.com/csstype/download/csstype-3.1.2.tgz#1d4bf9d572f11c14031f0436e1c10bc1f571f50b"
-  integrity sha1-HUv51XLxHBQDHwQ24cELwfVx9Qs=
 
 debug@^4.1.1, debug@^4.3.2:
   version "4.3.4"
@@ -415,11 +288,6 @@ estraverse@^5.1.0, estraverse@^5.2.0:
   resolved "http://registry.m.jd.com/estraverse/download/estraverse-5.3.0.tgz#2eea5290702f26ab8fe5370370ff86c965d21123"
   integrity sha1-LupSkHAvJquP5TcDcP+GyWXSESM=
 
-estree-walker@^2.0.2:
-  version "2.0.2"
-  resolved "http://registry.m.jd.com/estree-walker/download/estree-walker-2.0.2.tgz#52f010178c2a4c117a7757cfe942adb7d2da4cac"
-  integrity sha1-UvAQF4wqTBF6d1fP6UKtt9LaTKw=
-
 esutils@^2.0.2:
   version "2.0.3"
   resolved "http://registry.m.jd.com/esutils/download/esutils-2.0.3.tgz#74d2eb4de0b8da1293711910d50775b9b710ef64"
@@ -521,6 +389,11 @@ ignore@^5.2.0:
   resolved "http://registry.m.jd.com/ignore/download/ignore-5.2.4.tgz#a291c0c6178ff1b960befe47fcdec301674a6324"
   integrity sha1-opHAxheP8blgvv5H/N7DAWdKYyQ=
 
+immer@^10.0.2:
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-10.0.2.tgz#11636c5b77acf529e059582d76faf338beb56141"
+  integrity sha512-Rx3CqeqQ19sxUtYV9CU911Vhy8/721wRFnJv3REVGWUmoAcIwzifTsdmJte/MV+0/XpM35LZdQMBGkRIoLPwQA==
+
 import-fresh@^3.0.0, import-fresh@^3.2.1:
   version "3.3.0"
   resolved "http://registry.m.jd.com/import-fresh/download/import-fresh-3.3.0.tgz#37162c25fcb9ebaa2e6e53d5b4d88ce17d9e0c2b"
@@ -606,13 +479,6 @@ lodash.merge@^4.6.2:
   resolved "http://registry.m.jd.com/lodash.merge/download/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha1-VYqlO0O2YeGSWgr9+japoQhf5Xo=
 
-magic-string@^0.30.0:
-  version "0.30.1"
-  resolved "http://registry.m.jd.com/magic-string/download/magic-string-0.30.1.tgz#ce5cd4b0a81a5d032bd69aab4522299b2166284d"
-  integrity sha1-zlzUsKgaXQMr1pqrRSIpmyFmKE0=
-  dependencies:
-    "@jridgewell/sourcemap-codec" "^1.4.15"
-
 minimatch@^3.0.5, minimatch@^3.1.1, minimatch@^3.1.2:
   version "3.1.2"
   resolved "http://registry.m.jd.com/minimatch/download/minimatch-3.1.2.tgz#19cd194bfd3e428f049a70817c038d89ab4be35b"
@@ -624,11 +490,6 @@ ms@2.1.2:
   version "2.1.2"
   resolved "http://registry.m.jd.com/ms/download/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk=
-
-nanoid@^3.3.6:
-  version "3.3.6"
-  resolved "http://registry.m.jd.com/nanoid/download/nanoid-3.3.6.tgz#443380c856d6e9f9824267d960b4236ad583ea4c"
-  integrity sha1-RDOAyFbW6fmCQmfZYLQjatWD6kw=
 
 natural-compare@^1.4.0:
   version "1.4.0"
@@ -690,20 +551,6 @@ path-key@^3.1.0:
   resolved "http://registry.m.jd.com/path-key/download/path-key-3.1.1.tgz#581f6ade658cbba65a0d3380de7753295054f375"
   integrity sha1-WB9q3mWMu6ZaDTOA3ndTKVBU83U=
 
-picocolors@^1.0.0:
-  version "1.0.0"
-  resolved "http://registry.m.jd.com/picocolors/download/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"
-  integrity sha1-y1vcdP8/UYkiNur3nWi8RFZKuBw=
-
-postcss@^8.1.10:
-  version "8.4.25"
-  resolved "http://registry.m.jd.com/postcss/download/postcss-8.4.25.tgz#4a133f5e379eda7f61e906c3b1aaa9b81292726f"
-  integrity sha1-ShM/Xjee2n9h6QbDsaqpuBKScm8=
-  dependencies:
-    nanoid "^3.3.6"
-    picocolors "^1.0.0"
-    source-map-js "^1.0.2"
-
 prelude-ls@^1.2.1:
   version "1.2.1"
   resolved "http://registry.m.jd.com/prelude-ls/download/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
@@ -755,11 +602,6 @@ shebang-regex@^3.0.0:
   resolved "http://registry.m.jd.com/shebang-regex/download/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha1-rhbxZE2HPsrYQ7AwexQzYtTEIXI=
 
-source-map-js@^1.0.2:
-  version "1.0.2"
-  resolved "http://registry.m.jd.com/source-map-js/download/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
-  integrity sha1-rbw2HZxi3zgBJefxYfccgm8eSQw=
-
 strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "http://registry.m.jd.com/strip-ansi/download/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
@@ -803,27 +645,6 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
-use-sync-external-store@1.2.0:
-  version "1.2.0"
-  resolved "http://registry.m.jd.com/use-sync-external-store/download/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
-  integrity sha1-fb79bvP+TnZ6DPXXKHqs+1hGkoo=
-
-vue-demi@>=0.14.5:
-  version "0.14.5"
-  resolved "http://registry.m.jd.com/vue-demi/download/vue-demi-0.14.5.tgz#676d0463d1a1266d5ab5cba932e043d8f5f2fbd9"
-  integrity sha1-Z20EY9GhJm1atcupMuBD2PXy+9k=
-
-vue@^3.3.4:
-  version "3.3.4"
-  resolved "http://registry.m.jd.com/vue/download/vue-3.3.4.tgz#8ed945d3873667df1d0fcf3b2463ada028f88bd6"
-  integrity sha1-jtlF04c2Z98dD887JGOtoCj4i9Y=
-  dependencies:
-    "@vue/compiler-dom" "3.3.4"
-    "@vue/compiler-sfc" "3.3.4"
-    "@vue/runtime-dom" "3.3.4"
-    "@vue/server-renderer" "3.3.4"
-    "@vue/shared" "3.3.4"
-
 which@^2.0.1:
   version "2.0.2"
   resolved "http://registry.m.jd.com/which/download/which-2.0.2.tgz#7c6a8dd0a636a0327e10b59c9286eee93f3f51b1"
@@ -845,10 +666,3 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "http://registry.m.jd.com/yocto-queue/download/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha1-ApTrPe4FAo0x7hpfosVWpqrxChs=
-
-zustand@^4.3.8:
-  version "4.3.9"
-  resolved "http://registry.m.jd.com/zustand/download/zustand-4.3.9.tgz#a7d4332bbd75dfd25c6848180b3df1407217f2ad"
-  integrity sha1-p9QzK71139JcaEgYCz3xQHIX8q0=
-  dependencies:
-    use-sync-external-store "1.2.0"

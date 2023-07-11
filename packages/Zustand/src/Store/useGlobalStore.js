@@ -1,5 +1,5 @@
 import { immer } from "zustand/middleware/immer";
-import create from "../../lib/index";
+import create from "toy-zustand";
 
 const useGlobalStore = create(
   immer(
