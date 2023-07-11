@@ -1,7 +1,7 @@
 {
   "name": "toy-zustand",
   "private": false,
-  "version": "0.0.4",
+  "version": "0.0.5",
   "exports": {
     "./package.json": "./package.json",
     "./react": "./dist/react.js",
@@ -12,6 +12,8 @@
   "files": [
     "dist"
   ],
+  "description": "🐻 Bear necessities for state management in React or Vue",
+  "homepage": "https://github.com/waltiu/mini-toys/tree/master/packages/Zustand",
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
