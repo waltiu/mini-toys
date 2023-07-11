@@ -1,509 +1,129 @@
-
+[![NPM version](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a80e9a259ff04e94942ef0d8063eff21~tplv-k3u1fbpfcp-zoom-1.image)](https://www.npmjs.com/package/toy-zustand)
 
 ```bash
-npm install zustand # or yarn add zustand or pnpm add zustand
+npm install toy-zustand # or yarn add toy-zustand or pnpm add toy-zustand
 ```
 
+vue3版demo：<https://codesandbox.io/p/sandbox/vue3-zustand-demo-m63cx9>
 
+react版demo：<https://codesandbox.io/p/sandbox/react-zustand-demo-n83w33>
 
-## First create a store
+## toy-zustand支持哪些内容？
 
-Your store is a hook! You can put anything in it: primitives, objects, functions. State has to be updated immutably and the `set` function [merges state](./docs/guides/immutable-state-and-merging.md) to help it.
+使用的用法和zustand是一模一样的，这里介绍下常用的使用方法，了解更多的话可以去zustand的官网。
+<https://zustand-demo.pmnd.rs/>
 
 ```jsx
-import { create } from 'zustand'
 
-const useBearStore = create((set) => ({
-  bears: 0,
-  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-  removeAllBears: () => set({ bears: 0 }),
-}))
+// vue
+import { create } from 'zustand/vue'
+
+// react
+import { create } from 'zustand/react'
+
+// 中间件immer
+import { immer } from "toy-zustand/middleware/immer";
+
+// shallow方法
+import shallow from 'toy-zustand/shallow'
+
 ```
 
-## Then bind your components, and that's it!
+## 创建一个store
 
-Use the hook anywhere, no providers are needed. Select your state and the component will re-render on changes.
+我们以vue3为例，创建一个全局store数据。只需要调用create方法，并设置初始化数据即可以，store存储的数据可以是基本数据类型（string number boolean null undefined）, 也可以是object 和 function。我们可以function通过set函数来合并我们的store。
 
 ```jsx
-function BearCounter() {
-  const bears = useBearStore((state) => state.bears)
-  return <h1>{bears} around here ...</h1>
-}
+import create from "toy-zustand/vue";
 
-function Controls() {
-  const increasePopulation = useBearStore((state) => state.increasePopulation)
-  return <button onClick={increasePopulation}>one up</button>
-}
+const useGlobalStore = create((set, get) => ({
+  bears: 10086,
+  count: 100,
+  increase: (by) => set((state) => ({ bears: (state.bears || 0) + by })),
+  reset: () =>
+    set({
+      count: 0,
+      bears: 0,
+    }),
+  radomCount: () => set(() => ({ count: Math.random() })),
+}));
+
+export default useGlobalStore;
+
 ```
 
-### Why zustand over redux?
+## store数据的使用
 
-- Simple and un-opinionated
-- Makes hooks the primary means of consuming state
-- Doesn't wrap your app in context providers
-- [Can inform components transiently (without causing render)](#transient-updates-for-often-occurring-state-changes)
-
-### Why zustand over context?
-
-- Less boilerplate
-- Renders components only on changes
-- Centralized, action-based state management
-
----
-
-# Recipes
-
-## Fetching everything
-
-You can, but bear in mind that it will cause the component to update on every state change!
+我们可以使用数据在任何地方使用。比如react的当当初一个hooks使用，vue3中通过setUp直接将store暴露给组件。
 
 ```jsx
-const state = useBearStore()
-```
+<!-- Component.vue -->
+<script setup>
+import useGlobalStore from "../Store/useGlobalStore";
 
-## Selecting multiple state slices
+const globalStore = useGlobalStore();
+const { bears, count, increase, radomCount } = globalStore;
+</script>
 
-It detects changes with strict-equality (old === new) by default, this is efficient for atomic state picks.
+<template>
+  <h3>Parent</h3>
+  <div>
+    bears ( {{ bears }} ):
+    <button @click="() => increase(1)">增加</button>
+  </div>
+  <div>
+    count ( {{ count }} ): <button @click="() => radomCount()">随机</button>
+  </div>
+</template>
 
-```jsx
-const nuts = useBearStore((state) => state.nuts)
-const honey = useBearStore((state) => state.honey)
-```
-
-If you want to construct a single object with multiple state-picks inside, similar to redux's mapStateToProps, you can tell zustand that you want the object to be diffed shallowly by passing the `shallow` equality function.
-
-```jsx
-import { shallow } from 'zustand/shallow'
-
-// Object pick, re-renders the component when either state.nuts or state.honey change
-const { nuts, honey } = useBearStore(
-  (state) => ({ nuts: state.nuts, honey: state.honey }),
-  shallow
-)
-
-// Array pick, re-renders the component when either state.nuts or state.honey change
-const [nuts, honey] = useBearStore(
-  (state) => [state.nuts, state.honey],
-  shallow
-)
-
-// Mapped picks, re-renders the component when state.treats changes in order, count or keys
-const treats = useBearStore((state) => Object.keys(state.treats), shallow)
-```
-
-For more control over re-rendering, you may provide any custom equality function.
-
-```jsx
-const treats = useBearStore(
-  (state) => state.treats,
-  (oldTreats, newTreats) => compare(oldTreats, newTreats)
-)
-```
-
-## Overwriting state
-
-The `set` function has a second argument, `false` by default. Instead of merging, it will replace the state model. Be careful not to wipe out parts you rely on, like actions.
-
-```jsx
-import omit from 'lodash-es/omit'
-
-const useFishStore = create((set) => ({
-  salmon: 1,
-  tuna: 2,
-  deleteEverything: () => set({}, true), // clears the entire store, actions included
-  deleteTuna: () => set((state) => omit(state, ['tuna']), true),
-}))
-```
-
-## Async actions
-
-Just call `set` when you're ready, zustand doesn't care if your actions are async or not.
-
-```jsx
-const useFishStore = create((set) => ({
-  fishies: {},
-  fetch: async (pond) => {
-    const response = await fetch(pond)
-    set({ fishies: await response.json() })
-  },
-}))
-```
-
-## Read from state in actions
-
-`set` allows fn-updates `set(state => result)`, but you still have access to state outside of it through `get`.
-
-```jsx
-const useSoundStore = create((set, get) => ({
-  sound: "grunt",
-  action: () => {
-    const sound = get().sound
-    // ...
-  }
-})
-```
-
-## Reading/writing state and reacting to changes outside of components
-
-Sometimes you need to access state in a non-reactive way or act upon the store. For these cases, the resulting hook has utility functions attached to its prototype.
-
-```jsx
-const useDogStore = create(() => ({ paw: true, snout: true, fur: true }))
-
-// Getting non-reactive fresh state
-const paw = useDogStore.getState().paw
-// Listening to all changes, fires synchronously on every change
-const unsub1 = useDogStore.subscribe(console.log)
-// Updating state, will trigger listeners
-useDogStore.setState({ paw: false })
-// Unsubscribe listeners
-unsub1()
-
-// You can of course use the hook as you always would
-const Component = () => {
-  const paw = useDogStore((state) => state.paw)
-  ...
-```
-
-### Using subscribe with selector
-
-If you need to subscribe with a selector,
-`subscribeWithSelector` middleware will help.
-
-With this middleware `subscribe` accepts an additional signature:
-
-```ts
-subscribe(selector, callback, options?: { equalityFn, fireImmediately }): Unsubscribe
 ```
 
 ```js
-import { subscribeWithSelector } from 'zustand/middleware'
-const useDogStore = create(
-  subscribeWithSelector(() => ({ paw: true, snout: true, fur: true }))
-)
+<!-- Component.react -->
+import useGlobalStore from "../Store/useGlobalStore";
 
-// Listening to selected changes, in this case when "paw" changes
-const unsub2 = useDogStore.subscribe((state) => state.paw, console.log)
-// Subscribe also exposes the previous value
-const unsub3 = useDogStore.subscribe(
-  (state) => state.paw,
-  (paw, previousPaw) => console.log(paw, previousPaw)
-)
-// Subscribe also supports an optional equality function
-const unsub4 = useDogStore.subscribe(
-  (state) => [state.paw, state.fur],
-  console.log,
-  { equalityFn: shallow }
-)
-// Subscribe and fire immediately
-const unsub5 = useDogStore.subscribe((state) => state.paw, console.log, {
-  fireImmediately: true,
-})
+const Child = () => {
+  const { reset, destroy } = useGlobalStore((state) => ({
+    reset: state.reset,
+    destroy: state.destroy,
+  }));
+  return (
+    <div>
+      <h3>Child</h3>
+      <button onClick={() => reset()}>清空</button>
+      <button onClick={() => destroy()}>销毁</button>
+    </div>
+  );
+};
+
+export default Child;
+
+
 ```
 
-## Using zustand without React
+直接在js中使用
 
-Zustand core can be imported and used without the React dependency. The only difference is that the create function does not return a hook, but the API utilities.
+```js
+import useGlobalStore from "../Store/useGlobalStore";
 
-```jsx
-import { createStore } from 'zustand/vanilla'
-
-const store = createStore(() => ({ ... }))
-const { getState, setState, subscribe } = store
-
-export default store
-```
-
-You can use a vanilla store with `useStore` hook available since v4.
-
-```jsx
-import { useStore } from 'zustand'
-import { vanillaStore } from './vanillaStore'
-
-const useBoundStore = (selector) => useStore(vanillaStore, selector)
-```
-
-:warning: Note that middlewares that modify `set` or `get` are not applied to `getState` and `setState`.
-
-## Transient updates (for often occurring state-changes)
-
-The subscribe function allows components to bind to a state-portion without forcing re-render on changes. Best combine it with useEffect for automatic unsubscribe on unmount. This can make a [drastic](https://codesandbox.io/s/peaceful-johnson-txtws) performance impact when you are allowed to mutate the view directly.
-
-```jsx
-const useScratchStore = create(set => ({ scratches: 0, ... }))
-
-const Component = () => {
-  // Fetch initial state
-  const scratchRef = useRef(useScratchStore.getState().scratches)
-  // Connect to the store on mount, disconnect on unmount, catch state-changes in a reference
-  useEffect(() => useScratchStore.subscribe(
-    state => (scratchRef.current = state.scratches)
-  ), [])
-  ...
-```
-
-## Sick of reducers and changing nested states? Use Immer!
-
-Reducing nested structures is tiresome. Have you tried [immer](https://github.com/mweststrate/immer)?
-
-```jsx
-import { produce } from 'immer'
-
-const useLushStore = create((set) => ({
-  lush: { forest: { contains: { a: 'bear' } } },
-  clearForest: () =>
-    set(
-      produce((state) => {
-        state.lush.forest.contains = null
-      })
-    ),
-}))
-
-const clearForest = useLushStore((state) => state.clearForest)
-clearForest()
-```
-
-[Alternatively, there are some other solutions.](./docs/guides/updating-state.md#with-immer)
-
-## Middleware
-
-You can functionally compose your store any way you like.
-
-```jsx
-// Log every time state is changed
-const log = (config) => (set, get, api) =>
-  config(
-    (...args) => {
-      console.log('  applying', args)
-      set(...args)
-      console.log('  new state', get())
-    },
-    get,
-    api
-  )
-
-const useBeeStore = create(
-  log((set) => ({
-    bees: false,
-    setBees: (input) => set({ bees: input }),
-  }))
-)
-```
-
-## Persist middleware
-
-You can persist your store's data using any kind of storage.
-
-```jsx
-import { create } from 'zustand'
-import { persist, createJSONStorage } from 'zustand/middleware'
-
-const useFishStore = create(
-  persist(
-    (set, get) => ({
-      fishes: 0,
-      addAFish: () => set({ fishes: get().fishes + 1 }),
-    }),
-    {
-      name: 'food-storage', // unique name
-      storage: createJSONStorage(() => sessionStorage), // (optional) by default, 'localStorage' is used
-    }
-  )
-)
-```
-
-[See the full documentation for this middleware.](./docs/integrations/persisting-store-data.md)
-
-## Immer middleware
-
-Immer is available as middleware too.
-
-```jsx
-import { create } from 'zustand'
-import { immer } from 'zustand/middleware/immer'
-
-const useBeeStore = create(
-  immer((set) => ({
-    bees: 0,
-    addBees: (by) =>
-      set((state) => {
-        state.bees += by
-      }),
-  }))
-)
-```
-
-## Can't live without redux-like reducers and action types?
-
-```jsx
-const types = { increase: 'INCREASE', decrease: 'DECREASE' }
-
-const reducer = (state, { type, by = 1 }) => {
-  switch (type) {
-    case types.increase:
-      return { grumpiness: state.grumpiness + by }
-    case types.decrease:
-      return { grumpiness: state.grumpiness - by }
-  }
+export const getGlobalStore=()=>{
+  return useGlobalStore.getState()
 }
-
-const useGrumpyStore = create((set) => ({
-  grumpiness: 0,
-  dispatch: (args) => set((state) => reducer(state, args)),
-}))
-
-const dispatch = useGrumpyStore((state) => state.dispatch)
-dispatch({ type: types.increase, by: 2 })
 ```
 
-Or, just use our redux-middleware. It wires up your main-reducer, sets the initial state, and adds a dispatch function to the state itself and the vanilla API.
+### set的第二个参数，replace
 
-```jsx
-import { redux } from 'zustand/middleware'
+初始话set可以传递第二个参数为boolean类型，为true的会就会替换整个store而不是默认的合并了！
 
-const useGrumpyStore = create(redux(reducer, initialState))
-```
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/58c23358212d4798afa3021415846564~tplv-k3u1fbpfcp-watermark.image?)
 
-## Redux devtools
+### 中间件
 
-```jsx
-import { devtools } from 'zustand/middleware'
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/46fbff35cb1f4ba3a73d7dd8a498a550~tplv-k3u1fbpfcp-watermark.image?)
 
-// Usage with a plain action store, it will log actions as "setState"
-const usePlainStore = create(devtools(store))
-// Usage with a redux store, it will log full action types
-const useReduxStore = create(devtools(redux(reducer, initialState)))
-```
+zustand提供很多的中间件，如persist，devtools等<br/>
+大家想要了解的话，可以去这里看!<https://github.com/pmndrs/zustand/tree/main/src/middleware>
 
-One redux devtools connection for multiple stores
+***
 
-```jsx
-import { devtools } from 'zustand/middleware'
-
-// Usage with a plain action store, it will log actions as "setState"
-const usePlainStore1 = create(devtools(store, { name, store: storeName1 }))
-const usePlainStore2 = create(devtools(store, { name, store: storeName2 }))
-// Usage with a redux store, it will log full action types
-const useReduxStore = create(devtools(redux(reducer, initialState)), , { name, store: storeName3 })
-const useReduxStore = create(devtools(redux(reducer, initialState)), , { name, store: storeName4 })
-```
-
-Assigning different connection names will separate stores in redux devtools. This also helps group different stores into separate redux devtools connections.
-
-devtools takes the store function as its first argument, optionally you can name the store or configure [serialize](https://github.com/zalmoxisus/redux-devtools-extension/blob/master/docs/API/Arguments.md#serialize) options with a second argument.
-
-Name store: `devtools(store, {name: "MyStore"})`, which will create a separate instance named "MyStore" in the devtools.
-
-Serialize options: `devtools(store, { serialize: { options: true } })`.
-
-#### Logging Actions
-
-devtools will only log actions from each separated store unlike in a typical _combined reducers_ redux store. See an approach to combining stores https://github.com/pmndrs/zustand/issues/163
-
-You can log a specific action type for each `set` function by passing a third parameter:
-
-```jsx
-const createBearSlice = (set, get) => ({
-  eatFish: () =>
-    set(
-      (prev) => ({ fishes: prev.fishes > 1 ? prev.fishes - 1 : 0 }),
-      false,
-      'bear/eatFish'
-    ),
-})
-```
-
-You can also log the action's type along with its payload:
-
-```jsx
-const createBearSlice = (set, get) => ({
-  addFishes: (count) =>
-    set((prev) => ({ fishes: prev.fishes + count }), false, {
-      type: 'bear/addFishes',
-      count,
-    }),
-})
-```
-
-If an action type is not provided, it is defaulted to "anonymous". You can customize this default value by providing an `anonymousActionType` parameter:
-
-```jsx
-devtools(..., { anonymousActionType: 'unknown', ... })
-```
-
-If you wish to disable devtools (on production for instance). You can customize this setting by providing the `enabled` parameter:
-
-```jsx
-devtools(..., { enabled: false, ... })
-```
-
-## React context
-
-The store created with `create` doesn't require context providers. In some cases, you may want to use contexts for dependency injection or if you want to initialize your store with props from a component. Because the normal store is a hook, passing it as a normal context value may violate the rules of hooks.
-
-The recommended method available since v4 is to use the vanilla store.
-
-```jsx
-import { createContext, useContext } from 'react'
-import { createStore, useStore } from 'zustand'
-
-const store = createStore(...) // vanilla store without hooks
-
-const StoreContext = createContext()
-
-const App = () => (
-  <StoreContext.Provider value={store}>
-    ...
-  </StoreContext.Provider>
-)
-
-const Component = () => {
-  const store = useContext(StoreContext)
-  const slice = useStore(store, selector)
-  ...
-```
-
-## TypeScript Usage
-
-Basic typescript usage doesn't require anything special except for writing `create<State>()(...)` instead of `create(...)`...
-
-```ts
-import { create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
-
-interface BearState {
-  bears: number
-  increase: (by: number) => void
-}
-
-const useBearStore = create<BearState>()(
-  devtools(
-    persist(
-      (set) => ({
-        bears: 0,
-        increase: (by) => set((state) => ({ bears: state.bears + by })),
-      }),
-      {
-        name: 'bear-storage',
-      }
-    )
-  )
-)
-```
-
-A more complete TypeScript guide is [here](docs/guides/typescript.md).
-
-## Best practices
-
-- You may wonder how to organize your code for better maintenance: [Splitting the store into separate slices](./docs/guides/slices-pattern.md).
-- Recommended usage for this unopinionated library: [Flux inspired practice](./docs/guides/flux-inspired-practice.md).
-- [Calling actions outside a React event handler in pre-React 18](./docs/guides/event-handler-in-pre-react-18.md).
-- [Testing](./docs/guides/testing.md)
-
-## Third-Party Libraries
-
-Some users may want to extend Zustand's feature set which can be done using third-party libraries made by the community. For information regarding third-party libraries with Zustand, visit [the doc](./docs/integrations/third-party-libraries.md).
-
-## Comparison with other libraries
-
-- [Difference between zustand and valtio](https://github.com/pmndrs/zustand/wiki/Difference-between-zustand-and-valtio)
+如果有好玩的库欢迎私聊我，一起学习讨论！
