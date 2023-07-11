@@ -15,13 +15,11 @@ export const useStore = (api, selector, equalityFn) => {
   const listener = (nextState, previousState) => {
     const prevStateSlice = selector(previousState);
     const nextStateSlice = selector(nextState);
-
     if (equalityFn !== undefined) {
       if (!equalityFn(prevStateSlice, nextStateSlice))
         state.value = nextStateSlice;
-      else {
-        state.value = nextStateSlice;
-      }
+    } else {
+      state.value = nextStateSlice;
     }
   };
   const unsubscribe = api.subscribe(listener);

@@ -5,12 +5,15 @@ const createStore = (fn) => {
 
   const setState = (partial, replace) => {
     const nextState = typeof partial === "function" ? partial(state) : partial;
+    console.log(nextState,'nextstate',state,partial)
+    const previousState=state
     state =
       replace ?? typeof nextState !== "object"
         ? nextState
         : Object.assign({}, state, nextState);
+        console.log(previousState,'compare',state)
     listeners.forEach((listener) => {
-      listener(state);
+      listener(state,previousState);
     });
   };
 

@@ -1,6 +1,5 @@
-import Test from "./Test"
 
 const App =()=>{
-  return <Test/>
+  return <div>hello toy-zustand</div>
 }
 export default App

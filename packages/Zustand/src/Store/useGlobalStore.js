@@ -1,5 +1,5 @@
 import { immer } from "zustand/middleware/immer";
-import create from "toy-zustand";
+import create from "../../dist/react";
 
 const useGlobalStore = create(
   immer(

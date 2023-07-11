@@ -1,10 +1,14 @@
 {
   "name": "toy-zustand",
   "private": false,
-  "version": "0.0.2",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "description": "src/lib/index.ts     dev",
+  "version": "0.0.4",
+  "exports": {
+    "./package.json": "./package.json",
+    "./react": "./dist/react.js",
+    "./vue": "./dist/vue.js",
+    "./shallow": "./dist/shallow.js",
+    "./middleware/immer": "./dist/immer.js"
+  },
   "files": [
     "dist"
   ],
@@ -22,12 +26,12 @@
     "zustand": "^4.3.8"
   },
   "peerDependencies": {
-    "@vueuse/core": "^10.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "vue": "^3.3.4"
   },
   "dependencies": {
+    "@vueuse/core": "^10.2.1",
     "immer": "^10.0.2"
   }
 }
